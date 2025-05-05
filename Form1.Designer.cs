@@ -31,43 +31,47 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
             screenClock = new Label();
-            Clock = new System.Windows.Forms.Timer(components);
             exitButton = new Button();
+            timer1 = new System.Windows.Forms.Timer(components);
             SuspendLayout();
             // 
             // screenClock
             // 
             resources.ApplyResources(screenClock, "screenClock");
-            screenClock.BackColor = SystemColors.Control;
-            screenClock.BorderStyle = BorderStyle.FixedSingle;
+            screenClock.BackColor = SystemColors.ActiveCaptionText;
+            screenClock.FlatStyle = FlatStyle.Flat;
+            screenClock.ForeColor = Color.LimeGreen;
             screenClock.Name = "screenClock";
             screenClock.Click += label1_Click;
-            // 
-            // Clock
-            // 
-            Clock.Interval = 1000;
-            Clock.Tag = "Seconds";
-            Clock.Tick += timer1_Tick;
             // 
             // exitButton
             // 
             resources.ApplyResources(exitButton, "exitButton");
+            exitButton.BackColor = Color.Black;
+            exitButton.FlatAppearance.BorderSize = 0;
+            exitButton.ForeColor = Color.LimeGreen;
             exitButton.Name = "exitButton";
-            exitButton.UseVisualStyleBackColor = true;
+            exitButton.UseVisualStyleBackColor = false;
             exitButton.Click += exitButton_Click;
+            // 
+            // timer1
+            // 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick_1;
             // 
             // MainPage
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.Black;
             ControlBox = false;
             Controls.Add(exitButton);
             Controls.Add(screenClock);
             Cursor = Cursors.Cross;
+            DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            HelpButton = true;
             Name = "MainPage";
+            TopMost = true;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -76,7 +80,7 @@
         #endregion
 
         private Label screenClock;
-        public System.Windows.Forms.Timer Clock;
         private Button exitButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
