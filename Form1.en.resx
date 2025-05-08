@@ -157,6 +157,13 @@
   <data name="exitButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
+  <data name="testDataBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 643</value>
+  </data>
+  <data name="testDataBox.Text" xml:space="preserve">
+    <value>Weiner
+</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 14</value>
   </data>

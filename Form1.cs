@@ -1,4 +1,5 @@
 using System.Drawing.Text;
+using System.Data.SQLite;
 
 namespace GuideProgram
 {
@@ -19,15 +20,34 @@ namespace GuideProgram
         //35N 	423
         //30N	547
         //25N	700 <-- should be the bottom of the screen, this is unchecked
-        //TODO: im tired, 45 = 159, 40 = 289. if the coordinates are 43 put it the correct amount in between 159 and 289
-        //we could subtract the difference of the lesser coordinate from the larger coordinate line we have, then place the line ate that new lesser point
-        //what am i doing.
-        //have to find the ratio between my pixel count and the real world coordinates on a map that is stretched
         public MainPage()
         {
+
+            //start page
+            //this must be done before using the database since none of the objects exist before this point
             InitializeComponent();
             this.Size = new Size(1400, 700);
             timer1.Start();
+
+            //connect to database
+            string DatabaseConnection = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
+            using (var connection = new SQLiteConnection(DatabaseConnection))
+            {
+                connection.Open();
+
+                string allCities = "SELECT * FROM cities;";
+                using (var command = new SQLiteCommand(allCities, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string cityName = reader["city_name"].ToString();
+                            testDataBox.AppendText(cityName + Environment.NewLine);
+                        }
+                    }
+                }
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -56,6 +76,11 @@ namespace GuideProgram
         {
             DateTime now = DateTime.Now;
             screenClock.Text = now.ToString("hh:mm:ss");
+        }
+
+        private void testDataBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
