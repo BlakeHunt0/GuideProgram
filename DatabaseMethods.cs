@@ -9,32 +9,35 @@ namespace GuideProgram
 {
     public class DatabaseMethods
     {
-        public void ConnectToDatabase()
+        string DatabaseLocation = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
+
+        //i need to learn how to make this conection method reusable
+        //i cant see any effective ways to get into the final while statement to work with the data
+
+        public List<string> ConnectToDatabase(string script, string columnName)
         {
-            //I need a better way to work with this
-            //connect to database
-            string DatabaseConnection = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
-            using (var connection = new SQLiteConnection(DatabaseConnection))
+            List<string> columnData = new List<string>();
+            using (var connection = new SQLiteConnection(DatabaseLocation))
             {
                 connection.Open();
-                string allCities = "SELECT * FROM cities;";
-                using (var command = new SQLiteCommand(allCities, connection))
+                using (var command = new SQLiteCommand(script, connection))
                 {
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            string cityName = reader["city_name"].ToString();
+                            string data = reader[columnName].ToString();
+                            columnData.Add(data);
                         }
                     }
                 }
             }
+            return columnData;
         }
 
-        public string mapDatabase()
+        public string Map_dbsrc()
         {
-            string DatabaseConnection = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
-            return DatabaseConnection;
+            return DatabaseLocation;
         }
     }
 }

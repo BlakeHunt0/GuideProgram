@@ -33,7 +33,6 @@
             screenClock = new Label();
             exitButton = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
-            testDataBox = new RichTextBox();
             SuspendLayout();
             // 
             // screenClock
@@ -60,19 +59,12 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick_1;
             // 
-            // testDataBox
-            // 
-            resources.ApplyResources(testDataBox, "testDataBox");
-            testDataBox.Name = "testDataBox";
-            testDataBox.TextChanged += testDataBox_TextChanged;
-            // 
             // MainPage
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ControlBox = false;
-            Controls.Add(testDataBox);
             Controls.Add(exitButton);
             Controls.Add(screenClock);
             Cursor = Cursors.Cross;
@@ -90,6 +82,5 @@
         private Label screenClock;
         private Button exitButton;
         private System.Windows.Forms.Timer timer1;
-        public RichTextBox testDataBox;
     }
 }
