@@ -10,6 +10,7 @@ namespace GuideProgram
         {
             InitializeComponent();
             this.Size = new Size(1400, 700);
+            this.TopMost = false;
             timer1.Start();
         }
 
@@ -42,6 +43,32 @@ namespace GuideProgram
         private void testDataBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string inlat = latbox.Text;
+            string inlon = lonbox.Text;
+
+            double tlat = Convert.ToDouble(inlat);
+            double tlon = Convert.ToDouble(inlon);
+
+            PointGeneration pointGen = new PointGeneration();
+
+            Point citpoint = pointGen.PlacePoint(tlat, tlon);
+
+            testbox.Text =
+                "input lat: " + inlat + "\n" +
+                "input lon: " + inlon + "\n" +
+                "lat pix: " + citpoint.X + "\n" +
+                "lon pix: " + citpoint.Y + "\n";
+
+            hw.Location = new Point(citpoint.X, citpoint.Y);
         }
     }
 }

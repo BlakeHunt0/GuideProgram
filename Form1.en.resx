@@ -157,6 +157,51 @@
   <data name="exitButton.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
+  <data name="graphButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 23</value>
+  </data>
+  <data name="graphButton.Text" xml:space="preserve">
+    <value>Graph</value>
+  </data>
+  <data name="hw.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 11</value>
+  </data>
+  <data name="lonbox.Text" xml:space="preserve">
+    <value>-122.95</value>
+  </data>
+  <data name="latbox.Text" xml:space="preserve">
+    <value>46.71</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 14</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>lat</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label2.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>26, 14</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>lon</value>
+  </data>
+  <data name="testbox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 305</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 14</value>
   </data>

@@ -9,25 +9,86 @@ using System.Data.SQLite;
 
 namespace GuideProgram
 {
-
+    //ISSUES:
+    //latitude doesn't seem to be going to the right location, it is placed very low when you input centralia's lat coordintates
+    //longitude doesn't work at all, I put in -122.95, which is between -130 and -60, but it doesn't see it as being in this range
     public class PointGeneration
     {
-        private List<(double min, double max)> us_lat = new List<(double min, double max)>
+        //latitude is the horrizonatal lines
+        //x pixel count for latitude
+        private List<(int latitude, int pixel)> US_latToPix = new List<(int latitude, int pixel)>
         {
-            (25, 30),
-            (30, 35),
-            (35, 40),
-            (40, 45),
-            (45, 50)
+            (45, 160),
+            (40, 289),
+            (35, 423),
+            (30, 547)
         };
-        private List<(double min, double max)> us_lon = new List<(double min, double max)>
+        //y pixel count for longitude
+        private List<(int longitude, int pixel)> US_lonToPix = new List<(int longitude, int pixel)>
         {
-            (-120, -110),
-            (-110, -100),
-            (-100, -90),
-            (-90, -80),
-            (-80, -70)
+            (-130, 0),
+            (-120, 197),
+            (-110, 408),
+            (-100, 624),
+            (-90, 818),
+            (-80, 1022),
+            (-70, 1236),
+            (-60, 1400)
         };
+
+        public Point PlacePoint(double lat,  double lon)
+        {
+            double latpix = 0;
+            double lonpix = 0;
+
+            //continue until point is found
+            int i = 0;
+            while (latpix == 0)
+            {
+                //make sure it is in range
+                if (lat > 30 && lat < 45)
+                {
+                    if (lat >= US_latToPix[i].latitude && lat <= US_latToPix[i + 1].latitude)
+                    {
+                        double relpos = ((lat - US_latToPix[i].latitude) / (US_latToPix[i + 1].latitude - US_latToPix[i].latitude));
+                        latpix = (US_latToPix[i].pixel + (US_latToPix[i + 1].pixel - US_latToPix[i].pixel) * relpos);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+                //need to make an out of range error
+                else
+                {
+                    latpix = 10;
+                }
+            }
+            i = 0;
+            while (lonpix == 0)
+            {
+                if (lon > -130 && lon < -60)
+                {
+                    if (lon >= US_lonToPix[i].longitude && lon <= US_lonToPix[i + 1].longitude)
+                    {
+                        double relpos = ((lon - US_lonToPix[i].longitude) / (US_lonToPix[i + 1].longitude - US_lonToPix[i].longitude));
+                        lonpix = (US_lonToPix[i].pixel + (US_lonToPix[i + 1].pixel - US_lonToPix[i].pixel) * relpos);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+                else
+                {
+                    lonpix = 10;
+                }
+                
+            }
+
+            Point point = new Point((int)latpix, (int)lonpix);
+            return point;
+        }
 
         public static void ShowCapitals(List<Point> points)
         {

@@ -33,6 +33,13 @@
             screenClock = new Label();
             exitButton = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
+            graphButton = new Button();
+            hw = new RichTextBox();
+            lonbox = new TextBox();
+            latbox = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            testbox = new RichTextBox();
             SuspendLayout();
             // 
             // screenClock
@@ -59,12 +66,59 @@
             timer1.Interval = 1000;
             timer1.Tick += timer1_Tick_1;
             // 
+            // graphButton
+            // 
+            resources.ApplyResources(graphButton, "graphButton");
+            graphButton.Name = "graphButton";
+            graphButton.UseVisualStyleBackColor = true;
+            graphButton.Click += button1_Click;
+            // 
+            // hw
+            // 
+            resources.ApplyResources(hw, "hw");
+            hw.Name = "hw";
+            // 
+            // lonbox
+            // 
+            resources.ApplyResources(lonbox, "lonbox");
+            lonbox.Name = "lonbox";
+            // 
+            // latbox
+            // 
+            resources.ApplyResources(latbox, "latbox");
+            latbox.Name = "latbox";
+            latbox.TextChanged += textBox2_TextChanged;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(label1, "label1");
+            label1.ForeColor = SystemColors.ButtonFace;
+            label1.Name = "label1";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Name = "label2";
+            // 
+            // testbox
+            // 
+            resources.ApplyResources(testbox, "testbox");
+            testbox.Name = "testbox";
+            // 
             // MainPage
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ControlBox = false;
+            Controls.Add(testbox);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(latbox);
+            Controls.Add(lonbox);
+            Controls.Add(hw);
+            Controls.Add(graphButton);
             Controls.Add(exitButton);
             Controls.Add(screenClock);
             Cursor = Cursors.Cross;
@@ -82,5 +136,12 @@
         private Label screenClock;
         private Button exitButton;
         private System.Windows.Forms.Timer timer1;
+        private Button graphButton;
+        private RichTextBox hw;
+        private TextBox lonbox;
+        private TextBox latbox;
+        private Label label1;
+        private Label label2;
+        private RichTextBox testbox;
     }
 }
