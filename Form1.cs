@@ -8,9 +8,19 @@ namespace GuideProgram
     {
         public MainPage()
         {
+            //get cities and roads from the database
+            Dhijkstras dhijkstras = new Dhijkstras();
+            List<City> cities = dhijkstras.LoadCitiesFromDB();
+            List<Road> roads = dhijkstras.LoadRoadsFromDB();
+
+            //start the form
             InitializeComponent();
+
+            // set the form properties
             this.Size = new Size(1400, 700);
             this.TopMost = false;
+
+            //start the clock
             timer1.Start();
         }
 
@@ -52,6 +62,9 @@ namespace GuideProgram
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //this is meant to test the PointGeneration class
+            //point generation does not work. I was not able to get help from a  tutor.
+            //graphically i cannot show this to anyone without explination, as it does not show anyting to the user.
             string inlat = latbox.Text;
             string inlon = lonbox.Text;
 
@@ -69,6 +82,11 @@ namespace GuideProgram
                 "lon pix: " + citpoint.Y + "\n";
 
             hw.Location = new Point(citpoint.X, citpoint.Y);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

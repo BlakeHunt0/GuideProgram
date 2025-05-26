@@ -1,0 +1,41 @@
+I gave the program to my brother and mom. 
+
+As is, users did not know the latitude and longitude of any city and had to look them up. longitude still doesn't work. Users checked various well known cities (New York, Olympia, etc). The program needs fixes and some more graphical enhancements could be nice.
+
+1. points only move vertically.
+2. Dijkstra's algorithm has not been implemented.
+
+Mother
+Q1. How well did this solve your problem?
+"I think i will keep using Ways."
+
+Q2. What was difficult to understand?
+"I don't know how to add the destination" (there is not currently a way to do so)
+
+Q3. What worked well for you?
+"The button works"
+
+Q4. What features would you like to see in the application?
+"There needs to be a route"
+"I would rather click on the map"
+
+Q5. If you could change anything about the app, what would it be?
+"I can't see myself bringing a laptop into the car"
+
+
+Brother
+Q1. How well did this solve your problem?
+"this doesn't work"
+
+Q2. What was difficult to understand?
+"Why can't I click on anything?"
+"The latitude is not working"
+
+Q3. What worked well for you?
+"nothing"
+
+Q4. What features would you like to see in the application?
+"make it work"
+
+Q5. If you could change anything about the app, what would it be?
+"all of it"

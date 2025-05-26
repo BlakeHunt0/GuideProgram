@@ -40,6 +40,7 @@
             label1 = new Label();
             label2 = new Label();
             testbox = new RichTextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // screenClock
@@ -106,12 +107,21 @@
             resources.ApplyResources(testbox, "testbox");
             testbox.Name = "testbox";
             // 
+            // label3
+            // 
+            resources.ApplyResources(label3, "label3");
+            label3.BackColor = Color.Transparent;
+            label3.ForeColor = SystemColors.Control;
+            label3.Name = "label3";
+            label3.Click += label3_Click;
+            // 
             // MainPage
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ControlBox = false;
+            Controls.Add(label3);
             Controls.Add(testbox);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -143,5 +153,6 @@
         private Label label1;
         private Label label2;
         private RichTextBox testbox;
+        private Label label3;
     }
 }

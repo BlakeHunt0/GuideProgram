@@ -10,11 +10,11 @@ using System.Data.SQLite;
 namespace GuideProgram
 {
     //ISSUES:
-    //latitude doesn't seem to be going to the right location, it is placed very low when you input centralia's lat coordintates
+    //latitude doesn't seem to be going to the right location, it is placed very low when you input centralia's lat coordintates. It appears to be around 150, but should be at 138 which is the number it gets, but the actual object is being placed at ~150.
     //longitude doesn't work at all, I put in -122.95, which is between -130 and -60, but it doesn't see it as being in this range
     public class PointGeneration
     {
-        //latitude is the horrizonatal lines
+        //latitude is the horrizonatal lines (i messed this up originally)
         //x pixel count for latitude
         private List<(int latitude, int pixel)> US_latToPix = new List<(int latitude, int pixel)>
         {
@@ -36,18 +36,21 @@ namespace GuideProgram
             (-60, 1400)
         };
 
-        public Point PlacePoint(double lat,  double lon)
+        public Point PlacePoint(double lat, double lon)
         {
             double latpix = 0;
             double lonpix = 0;
 
-            //continue until point is found
+            //longitude has worked fine this entire time
+            //I have been trying to fix the wrong part of the code
+
             int i = 0;
             while (latpix == 0)
             {
                 //make sure it is in range
-                if (lat > 30 && lat < 45)
+                if (lat >= 30 && lat <= 45)
                 {
+                    //got error "index was out of range when 40, 35.89 was input
                     if (lat >= US_latToPix[i].latitude && lat <= US_latToPix[i + 1].latitude)
                     {
                         double relpos = ((lat - US_latToPix[i].latitude) / (US_latToPix[i + 1].latitude - US_latToPix[i].latitude));
@@ -58,7 +61,7 @@ namespace GuideProgram
                         i++;
                     }
                 }
-                //need to make an out of range error
+                //need to make an out of range error/alert
                 else
                 {
                     latpix = 10;
@@ -67,7 +70,7 @@ namespace GuideProgram
             i = 0;
             while (lonpix == 0)
             {
-                if (lon > -130 && lon < -60)
+                if (lon >= -130 && lon <= -60)
                 {
                     if (lon >= US_lonToPix[i].longitude && lon <= US_lonToPix[i + 1].longitude)
                     {
@@ -83,27 +86,27 @@ namespace GuideProgram
                 {
                     lonpix = 10;
                 }
-                
+
             }
 
             Point point = new Point((int)latpix, (int)lonpix);
             return point;
         }
 
+        //TODO: this is completely outdated, I need to connect it to the cities list, find the cities with a 1 boolean value in is_capital, then get their lat/lon and place those points with the place point method.
         public static void ShowCapitals(List<Point> points)
         {
-            //what am i doing <:(
             PointGeneration pointGen = new PointGeneration();
-            DatabaseMethods dbMethods = new DatabaseMethods();
+            Dhijkstras dhijkstras = new Dhijkstras();
 
-            string src = dbMethods.Map_dbsrc();
+            string src = dhijkstras.dbSource;
 
             using (var connection = new SQLiteConnection(src))
             {
                 connection.Open();
                 using (var cmd = new SQLiteCommand("SELECT * FROM cities;", connection))
                 {
-                    using (var reader  = cmd.ExecuteReader())
+                    using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
