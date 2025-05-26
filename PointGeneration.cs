@@ -14,8 +14,14 @@ namespace GuideProgram
     //longitude doesn't work at all, I put in -122.95, which is between -130 and -60, but it doesn't see it as being in this range
     public class PointGeneration
     {
-        //latitude is the horrizonatal lines (i messed this up originally)
-        //x pixel count for latitude
+        //LAT IS Y, LON IS X
+        //longitude is the MARKERS on the horizontal plane!
+        //longitudes markers go up VERTICALLY!
+        //the inverse is true for latitude
+
+        //child left behind^
+
+        //y pixel count for latitude
         private List<(int latitude, int pixel)> US_latToPix = new List<(int latitude, int pixel)>
         {
             (45, 160),
@@ -23,7 +29,7 @@ namespace GuideProgram
             (35, 423),
             (30, 547)
         };
-        //y pixel count for longitude
+        //x pixel count for longitude
         private List<(int longitude, int pixel)> US_lonToPix = new List<(int longitude, int pixel)>
         {
             (-130, 0),
@@ -41,17 +47,14 @@ namespace GuideProgram
             double latpix = 0;
             double lonpix = 0;
 
-            //longitude has worked fine this entire time
-            //I have been trying to fix the wrong part of the code
+            //TODO: lat lon are moving the opposite directions
 
             int i = 0;
             while (latpix == 0)
             {
-                //make sure it is in range
-                if (lat >= 30 && lat <= 45)
+                if (lat <= 45 && lat >= 30)
                 {
-                    //got error "index was out of range when 40, 35.89 was input
-                    if (lat >= US_latToPix[i].latitude && lat <= US_latToPix[i + 1].latitude)
+                    if (lat <= US_latToPix[i].latitude && lat >= US_latToPix[i + 1].latitude)
                     {
                         double relpos = ((lat - US_latToPix[i].latitude) / (US_latToPix[i + 1].latitude - US_latToPix[i].latitude));
                         latpix = (US_latToPix[i].pixel + (US_latToPix[i + 1].pixel - US_latToPix[i].pixel) * relpos);
@@ -61,9 +64,9 @@ namespace GuideProgram
                         i++;
                     }
                 }
-                //need to make an out of range error/alert
                 else
                 {
+                    //TODO: make an out of range alert for this
                     latpix = 10;
                 }
             }

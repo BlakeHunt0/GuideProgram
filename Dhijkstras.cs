@@ -12,10 +12,11 @@ namespace GuideProgram
     {
 
 
-        //make this a relative path
+        //TODO: make this a relative path
         public string dbSource = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
 
-        //this gets all of the cities, this needs to be optimized. I will have to talk to Jesse about making sure that I don't make several large lists left uncontroled in ram.
+        //TODO: this gets all of the cities, this needs to be optimized. I will have to talk to Jesse about making sure that I don't make several large lists left uncontroled in ram.
+
         //the reader will close on its own.
         /// <summary>
         /// Load cities from the database into a List<>.
@@ -44,7 +45,6 @@ namespace GuideProgram
                                 latitude = reader.GetDouble(2),
                                 longitude = reader.GetDouble(3),
                                 state = reader.GetString(4),
-                                //is_capital is a 0/1 int value in the database, which should work with GetBoolean but does not. I think there is a null value.
                                 is_capital = reader.GetBoolean(5)
                             });
                         }

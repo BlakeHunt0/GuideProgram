@@ -62,6 +62,8 @@ namespace GuideProgram
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //LAT IS Y, LON IS X
+            
             //this is meant to test the PointGeneration class
             //point generation does not work. I was not able to get help from a  tutor.
             //graphically i cannot show this to anyone without explination, as it does not show anyting to the user.
@@ -78,10 +80,10 @@ namespace GuideProgram
             testbox.Text =
                 "input lat: " + inlat + "\n" +
                 "input lon: " + inlon + "\n" +
-                "lat pix: " + citpoint.X + "\n" +
-                "lon pix: " + citpoint.Y + "\n";
+                "lat pix: " + citpoint.Y + "\n" +
+                "lon pix: " + citpoint.X + "\n";
 
-            hw.Location = new Point(citpoint.X, citpoint.Y);
+            hw.Location = new Point(citpoint.Y, citpoint.X);
         }
 
         private void label3_Click(object sender, EventArgs e)
