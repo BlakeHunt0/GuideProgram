@@ -14,24 +14,30 @@ namespace GuideProgram
     //longitude doesn't work at all, I put in -122.95, which is between -130 and -60, but it doesn't see it as being in this range
     public class PointGeneration
     {
-        //LAT IS Y, LON IS X
-        //longitude is the MARKERS on the horizontal plane!
-        //longitudes markers go up VERTICALLY!
-        //the inverse is true for latitude
+        //latitude are the lines on the x axis
+        //lat lines are horizontal
+        //6 lat lines encompass the US, from Canada to Mexixo
 
-        //child left behind^
+        //longitude are the lines on the y axis
+        //lon lines are vertical
+        //8 lon lines encompass the US vertically, from the Atlantic to the Pacific
 
-        //y pixel count for latitude
+        //x pixel count for latitude
         private List<(int latitude, int pixel)> US_latToPix = new List<(int latitude, int pixel)>
         {
+            //there are six lat lines here
+            (50, 0),
             (45, 160),
             (40, 289),
             (35, 423),
-            (30, 547)
+            (30, 547),
+            (25, 700)
         };
-        //x pixel count for longitude
+
+        //y pixel count for longitude
         private List<(int longitude, int pixel)> US_lonToPix = new List<(int longitude, int pixel)>
         {
+            //there are 8 lon lines here
             (-130, 0),
             (-120, 197),
             (-110, 408),
@@ -42,58 +48,67 @@ namespace GuideProgram
             (-60, 1400)
         };
 
+        /// <summary>
+        /// Gives you a pixel coordinate based on latitude and longitude. Returns a Point.
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public Point PlacePoint(double lat, double lon)
         {
+            //point pixel coordinates
             double latpix = 0;
             double lonpix = 0;
 
-            //TODO: lat lon are moving the opposite directions
+            //find min/max of the lists
+            int minLat = US_latToPix.Min(p => p.latitude);
+            int maxLat = US_latToPix.Max(p => p.latitude);
 
-            int i = 0;
-            while (latpix == 0)
+            int minLon = US_lonToPix.Min(p => p.longitude);
+            int maxLon = US_lonToPix.Max(p => p.longitude);
+
+            //throw exception if out of range
+            //TODO: 40 catches this exception
+            if (lat < minLat || lat > maxLat)
             {
-                if (lat <= 45 && lat >= 30)
-                {
-                    if (lat <= US_latToPix[i].latitude && lat >= US_latToPix[i + 1].latitude)
-                    {
-                        double relpos = ((lat - US_latToPix[i].latitude) / (US_latToPix[i + 1].latitude - US_latToPix[i].latitude));
-                        latpix = (US_latToPix[i].pixel + (US_latToPix[i + 1].pixel - US_latToPix[i].pixel) * relpos);
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                else
-                {
-                    //TODO: make an out of range alert for this
-                    latpix = 10;
-                }
+                throw new ArgumentOutOfRangeException("Latitude is out of range.");
             }
-            i = 0;
-            while (lonpix == 0)
+            if (lon < minLon || lon > maxLon)
             {
-                if (lon >= -130 && lon <= -60)
-                {
-                    if (lon >= US_lonToPix[i].longitude && lon <= US_lonToPix[i + 1].longitude)
-                    {
-                        double relpos = ((lon - US_lonToPix[i].longitude) / (US_lonToPix[i + 1].longitude - US_lonToPix[i].longitude));
-                        lonpix = (US_lonToPix[i].pixel + (US_lonToPix[i + 1].pixel - US_lonToPix[i].pixel) * relpos);
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                else
-                {
-                    lonpix = 10;
-                }
-
+                throw new ArgumentOutOfRangeException("Longitude is out of range.");
             }
 
-            Point point = new Point((int)latpix, (int)lonpix);
-            return point;
+            //find lat pixel coordinates
+            for (int i = 0; i < US_latToPix.Count - 1; i++)
+            {
+                if (lat <= US_latToPix[i].latitude && lat >= US_latToPix[i + 1].latitude)
+                {
+                    //relative position between two known lat lines
+                    double relpos = ((lat - US_latToPix[i].latitude) / (US_latToPix[i + 1].latitude - US_latToPix[i].latitude));
+                    //find the pixel equivalent of the relative position
+                    latpix = (US_latToPix[i].pixel + (US_latToPix[i + 1].pixel - US_latToPix[i].pixel) * relpos);
+
+                    break;
+                }
+            }
+
+            //find lon pixel coordinates
+            for (int i = 0; i < US_lonToPix.Count - 1; i++)
+            {
+                if (lon >= US_lonToPix[i].longitude && lon <= US_lonToPix[i + 1].longitude)
+                {
+                    //relative position between two known lon lines
+                    double relpos = ((lon - US_lonToPix[i].longitude) / (US_lonToPix[i + 1].longitude - US_lonToPix[i].longitude));
+                    //find the pixel equivalent of the relative position
+                    lonpix = (US_lonToPix[i].pixel + (US_lonToPix[i + 1].pixel - US_lonToPix[i].pixel) * relpos);
+
+                    break;
+                }
+            }
+
+            //return the point with the pixel coordinates
+            return new Point((int)latpix, (int)lonpix);
         }
 
         //TODO: this is completely outdated, I need to connect it to the cities list, find the cities with a 1 boolean value in is_capital, then get their lat/lon and place those points with the place point method.

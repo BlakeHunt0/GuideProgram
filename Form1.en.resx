@@ -202,17 +202,14 @@
   <data name="testbox.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 305</value>
   </data>
+  <data name="testbox.Text" xml:space="preserve">
+    <value>the 45 lon line is three pixels taller on the right side. There is a missing pxiel on the second to last lat line north east of michigan</value>
+  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 169</value>
-  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 14</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Lat ^ Lon&gt;</value>

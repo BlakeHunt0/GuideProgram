@@ -106,6 +106,7 @@
             // 
             resources.ApplyResources(testbox, "testbox");
             testbox.Name = "testbox";
+            testbox.TextChanged += testbox_TextChanged;
             // 
             // label3
             // 

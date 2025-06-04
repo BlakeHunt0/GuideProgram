@@ -63,7 +63,7 @@ namespace GuideProgram
         private void button1_Click(object sender, EventArgs e)
         {
             //LAT IS Y, LON IS X
-            
+
             //this is meant to test the PointGeneration class
             //point generation does not work. I was not able to get help from a  tutor.
             //graphically i cannot show this to anyone without explination, as it does not show anyting to the user.
@@ -87,6 +87,11 @@ namespace GuideProgram
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void testbox_TextChanged(object sender, EventArgs e)
         {
 
         }
