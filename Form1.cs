@@ -9,12 +9,15 @@ namespace GuideProgram
         public MainPage()
         {
             //get cities and roads from the database
-            Dhijkstras dhijkstras = new Dhijkstras();
-            List<City> cities = dhijkstras.LoadCitiesFromDB();
-            List<Road> roads = dhijkstras.LoadRoadsFromDB();
+            DBMethods dhijkstras = new DBMethods();
+            List<City> cities = dhijkstras.GetCities();
+            List<Road> roads = dhijkstras.GetRoads();
 
             //start the form
+            //anything realated to the design of the page has to go bellow this, or you get a null object referance.
             InitializeComponent();
+
+            testbox.Text = "Cities Loaded: " + cities.Count + "\n" + "Roads Loaded: " + roads.Count + "\n";
 
             // set the form properties
             this.Size = new Size(1400, 700);

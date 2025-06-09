@@ -9,9 +9,6 @@ using System.Data.SQLite;
 
 namespace GuideProgram
 {
-    //ISSUES:
-    //latitude doesn't seem to be going to the right location, it is placed very low when you input centralia's lat coordintates. It appears to be around 150, but should be at 138 which is the number it gets, but the actual object is being placed at ~150.
-    //longitude doesn't work at all, I put in -122.95, which is between -130 and -60, but it doesn't see it as being in this range
     public class PointGeneration
     {
         //latitude are the lines on the x axis
@@ -69,7 +66,6 @@ namespace GuideProgram
             int maxLon = US_lonToPix.Max(p => p.longitude);
 
             //throw exception if out of range
-            //TODO: 40 catches this exception
             if (lat < minLat || lat > maxLat)
             {
                 throw new ArgumentOutOfRangeException("Latitude is out of range.");
@@ -115,7 +111,7 @@ namespace GuideProgram
         public static void ShowCapitals(List<Point> points)
         {
             PointGeneration pointGen = new PointGeneration();
-            Dhijkstras dhijkstras = new Dhijkstras();
+            DBMethods dhijkstras = new DBMethods();
 
             string src = dhijkstras.dbSource;
 

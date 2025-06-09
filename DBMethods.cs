@@ -8,21 +8,16 @@ using System.Threading.Tasks;
 
 namespace GuideProgram
 {
-    public class Dhijkstras
+    public class DBMethods
     {
-
-
         //TODO: make this a relative path
         public string dbSource = @"Data Source=C:\Users\Brine\source\perltests\Capstone\Map_Database.db;Version=3;";
 
-        //TODO: this gets all of the cities, this needs to be optimized. I will have to talk to Jesse about making sure that I don't make several large lists left uncontroled in ram.
-
-        //the reader will close on its own.
         /// <summary>
         /// Load cities from the database into a List<>.
         /// </summary>
         /// <returns></returns>
-        public List<City> LoadCitiesFromDB()
+        private List<City> LoadCitiesFromDB()
         {
             var cities = new List<City>();
 
@@ -59,7 +54,7 @@ namespace GuideProgram
         /// Load roads from the database into a List<>.
         /// </summary>
         /// <returns></returns>
-        public List<Road> LoadRoadsFromDB()
+        private List<Road> LoadRoadsFromDB()
         {
             var roads = new List<Road>();
 
@@ -90,7 +85,39 @@ namespace GuideProgram
             return roads;
         }
 
-        //I could make an adjacencies method to specifically connect the lists in code. The roads already have foreign keys connected to the cities. 
-        //an adjacencies method could give me better directional controls for roads based one what i have seen online.
+        //TODO: Look into this more, I don't understand it enough
+        //what is Dictionary
+        //why not just use a list
+        Dictionary<int, List<(int neighborId, double distance)>> _adjacencyList = new Dictionary<int, List<(int neighborId, double distance)>>();
+
+        //put roads and cities into a cache list so there are hopefully no memory problems.
+        private List<City> _citiesCache;
+        private List<Road> _roadsCache;
+
+        /// <summary>
+        /// Get the existing cities list
+        /// </summary>
+        /// <returns></returns>
+        public List<City> GetCities()
+        {
+            if (_citiesCache == null)
+            {
+                _citiesCache = LoadCitiesFromDB();
+            }
+            return _citiesCache;
+        }
+
+        /// <summary>
+        /// Get the existing roads list
+        /// </summary>
+        /// <returns></returns>
+        public List<Road> GetRoads()
+        {
+            if (_roadsCache == null)
+            {
+                _roadsCache = LoadRoadsFromDB();
+            }
+            return _roadsCache;
+        }
     }
 }

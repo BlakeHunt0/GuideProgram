@@ -15,8 +15,6 @@ namespace GuideProgram
         public string state { get; set; }
         public bool is_capital { get; set; }
     }
-
-    //I don't know if i can have these two together, i might need to move this but the solution explorer is getting cluttered
     public class Road
     {
         public int road_id { get; set; }
@@ -24,5 +22,4 @@ namespace GuideProgram
         public string end_city_id { get; set; }
         public double distance { get; set; }
     }
-
 }
