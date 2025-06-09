@@ -20,6 +20,7 @@ namespace GuideProgram
         //I don't like the Dictionary<> graph here, it feels messy. "oh yeah just put in the entire area you are querying into the method real quick"
         //TODO: make separate regions to path out with this, then find the best route from there. This could be states since we already have this in the database.
         //TODO: make a method that finds all of the states we will pass through to reduce the amount of data we have to process. Then send that data to the dijkstraResult method. then return that data to a method that can plot the path on the map.
+        //TODO: saving interstates as sort of arterial connections between states could help us get directional control beteween states. if I was going to oregon i would head down I5, if i was going to idaho I would head east on I90.
 
         /// <summary>
         /// Dijkstra's algorithm to find the shortest path from a starting city to all other cities in the graph.

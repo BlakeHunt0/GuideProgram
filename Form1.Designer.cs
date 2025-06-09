@@ -34,13 +34,13 @@
             exitButton = new Button();
             timer1 = new System.Windows.Forms.Timer(components);
             graphButton = new Button();
-            hw = new RichTextBox();
             lonbox = new TextBox();
             latbox = new TextBox();
             label1 = new Label();
             label2 = new Label();
             testbox = new RichTextBox();
-            label3 = new Label();
+            testdot = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)testdot).BeginInit();
             SuspendLayout();
             // 
             // screenClock
@@ -74,11 +74,6 @@
             graphButton.UseVisualStyleBackColor = true;
             graphButton.Click += button1_Click;
             // 
-            // hw
-            // 
-            resources.ApplyResources(hw, "hw");
-            hw.Name = "hw";
-            // 
             // lonbox
             // 
             resources.ApplyResources(lonbox, "lonbox");
@@ -108,13 +103,12 @@
             testbox.Name = "testbox";
             testbox.TextChanged += testbox_TextChanged;
             // 
-            // label3
+            // testdot
             // 
-            resources.ApplyResources(label3, "label3");
-            label3.BackColor = Color.Transparent;
-            label3.ForeColor = SystemColors.Control;
-            label3.Name = "label3";
-            label3.Click += label3_Click;
+            resources.ApplyResources(testdot, "testdot");
+            testdot.Name = "testdot";
+            testdot.TabStop = false;
+            testdot.Click += pictureBox1_Click;
             // 
             // MainPage
             // 
@@ -122,13 +116,12 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ControlBox = false;
-            Controls.Add(label3);
+            Controls.Add(testdot);
             Controls.Add(testbox);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(latbox);
             Controls.Add(lonbox);
-            Controls.Add(hw);
             Controls.Add(graphButton);
             Controls.Add(exitButton);
             Controls.Add(screenClock);
@@ -138,6 +131,7 @@
             Name = "MainPage";
             TopMost = true;
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)testdot).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -148,12 +142,11 @@
         private Button exitButton;
         private System.Windows.Forms.Timer timer1;
         private Button graphButton;
-        private RichTextBox hw;
         private TextBox lonbox;
         private TextBox latbox;
         private Label label1;
         private Label label2;
         private RichTextBox testbox;
-        private Label label3;
+        private PictureBox testdot;
     }
 }

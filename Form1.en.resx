@@ -163,9 +163,6 @@
   <data name="graphButton.Text" xml:space="preserve">
     <value>Graph</value>
   </data>
-  <data name="hw.Size" type="System.Drawing.Size, System.Drawing">
-    <value>10, 11</value>
-  </data>
   <data name="lonbox.Text" xml:space="preserve">
     <value>-122.95</value>
   </data>
@@ -203,16 +200,19 @@
     <value>219, 305</value>
   </data>
   <data name="testbox.Text" xml:space="preserve">
-    <value>the 45 lon line is three pixels taller on the right side. There is a missing pxiel on the second to last lat line north east of michigan</value>
+    <value>the 45 lon line is three pixels taller on the right side. There is a missing pxiel on the second to last lat line north east of michiganI fixed the map graphic, and it shows these fixes in the file manager, but not in the visual studio designer</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="testdot.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wQAADsEBuJFr7QAAABlJREFUGFdjYMAHOhhE/2MIwDCGBIoAOgAAoz0IDcwD1pQAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 14</value>
+  <data name="testdot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>5, 5</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Lat ^ Lon&gt;</value>
+  <data name="testdot.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>CenterImage</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>8, 14</value>

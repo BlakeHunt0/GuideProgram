@@ -86,8 +86,7 @@ namespace GuideProgram
         }
 
         //TODO: Look into this more, I don't understand it enough
-        //what is Dictionary
-        //why not just use a list
+        //dictonary makes it easier to look through, since you can just look up the key
         Dictionary<int, List<(int neighborId, double distance)>> _adjacencyList = new Dictionary<int, List<(int neighborId, double distance)>>();
 
         //put roads and cities into a cache list so there are hopefully no memory problems.

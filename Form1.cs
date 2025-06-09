@@ -86,7 +86,11 @@ namespace GuideProgram
                 "lat pix: " + citpoint.Y + "\n" +
                 "lon pix: " + citpoint.X + "\n";
 
-            hw.Location = new Point(citpoint.Y, citpoint.X);
+            //the dot is placed but it is attached to a big black rectangle, and in the wrong place.
+            //I think my data is messed up because i am using a picture box now. I need to find the new corrdinates :(
+            MakePoint((int)citpoint.Y, (int)citpoint.X);
+
+            testdot.Location = new Point((int)citpoint.X, (int)citpoint.Y);
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -95,6 +99,29 @@ namespace GuideProgram
         }
 
         private void testbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MakePoint(int lat, int lon)
+        {
+            PictureBox dot = new PictureBox();
+
+            //why is it saved like that?
+            dot.Image = Image.FromFile("Point.jpg.png");
+
+            //we need to resize the image or there is a large black box
+            dot.SizeMode = PictureBoxSizeMode.CenterImage;
+            dot.Size = new Size(5, 5);
+
+            //ok so it is the right size but still in the wrong spot
+
+            this.Controls.Add(dot);
+
+            dot.Location = new Point(lon, lat);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }

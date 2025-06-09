@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Data.SQLite;
+using System.Runtime.CompilerServices;
 
 namespace GuideProgram
 {
