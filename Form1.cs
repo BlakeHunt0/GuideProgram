@@ -90,7 +90,7 @@ namespace GuideProgram
             //I think my data is messed up because i am using a picture box now. I need to find the new corrdinates :(
             MakePoint((int)citpoint.Y, (int)citpoint.X);
 
-            testdot.Location = new Point((int)citpoint.X, (int)citpoint.Y);
+            //why does the dot look like a microscopic swastica?
         }
 
         private void label3_Click(object sender, EventArgs e)
