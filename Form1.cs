@@ -66,31 +66,33 @@ namespace GuideProgram
         private void button1_Click(object sender, EventArgs e)
         {
             //LAT IS Y, LON IS X
+            //LAT MOVES ON THE Y AXIS, LON MOVES ON THE X AXIS
 
-            //this is meant to test the PointGeneration class
-            //point generation does not work. I was not able to get help from a  tutor.
-            //graphically i cannot show this to anyone without explination, as it does not show anyting to the user.
+            //get lat/lon
             string inlat = latbox.Text;
             string inlon = lonbox.Text;
 
+            //convert lat/lon to double
             double tlat = Convert.ToDouble(inlat);
             double tlon = Convert.ToDouble(inlon);
 
+            //create a point generation object
             PointGeneration pointGen = new PointGeneration();
 
+            //place the point using the lat/lon
             Point citpoint = pointGen.PlacePoint(tlat, tlon);
 
+            //display output for testing
+            //lat displays x because it is the virtical MARKERS on the x axis
+            //lon displays y because it is the horizontal MARKERS on the y axis
             testbox.Text =
                 "input lat: " + inlat + "\n" +
                 "input lon: " + inlon + "\n" +
-                "lat pix: " + citpoint.Y + "\n" +
-                "lon pix: " + citpoint.X + "\n";
+                "lat pix: " + citpoint.X + "\n" +
+                "lon pix: " + citpoint.Y + "\n";
 
-            //the dot is placed but it is attached to a big black rectangle, and in the wrong place.
-            //I think my data is messed up because i am using a picture box now. I need to find the new corrdinates :(
+            //make the dot to display
             MakePoint((int)citpoint.Y, (int)citpoint.X);
-
-            //why does the dot look like a microscopic swastica?
         }
 
         private void label3_Click(object sender, EventArgs e)

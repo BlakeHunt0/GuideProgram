@@ -25,10 +25,11 @@ namespace GuideProgram
         {
             //there are six lat lines here
             (50, 0),
-            (45, 160),
-            (40, 289),
-            (35, 423),
-            (30, 547),
+            (45, 157),
+            (40, 287),
+            (35, 421),
+            (30, 545),
+            //TODO: point made on 25 causing issues
             (25, 700)
         };
 
@@ -37,12 +38,13 @@ namespace GuideProgram
         {
             //there are 8 lon lines here
             (-130, 0),
-            (-120, 197),
-            (-110, 408),
-            (-100, 624),
-            (-90, 818),
-            (-80, 1022),
-            (-70, 1236),
+            (-120, 194),
+            (-110, 406),
+            (-100, 617),
+            (-90, 817),
+            (-80, 1019),
+            (-70, 1234),
+            //TODO: point made on -60 causing issues
             (-60, 1400)
         };
 
@@ -76,6 +78,7 @@ namespace GuideProgram
                 throw new ArgumentOutOfRangeException("Longitude is out of range.");
             }
 
+            //LATITUDE
             //find lat pixel coordinates
             for (int i = 0; i < US_latToPix.Count - 1; i++)
             {
@@ -90,6 +93,7 @@ namespace GuideProgram
                 }
             }
 
+            //LONGITUDE
             //find lon pixel coordinates
             for (int i = 0; i < US_lonToPix.Count - 1; i++)
             {
@@ -104,8 +108,11 @@ namespace GuideProgram
                 }
             }
 
+            //LAT IS Y, LON IS X
+            //Point IS (X, Y)
+            //LON THEN LAT, Y THEN X
             //return the point with the pixel coordinates
-            return new Point((int)latpix, (int)lonpix);
+            return new Point((int)lonpix, (int)latpix);
         }
 
         //TODO: this is completely outdated, I need to connect it to the cities list, find the cities with a 1 boolean value in is_capital, then get their lat/lon and place those points with the place point method.

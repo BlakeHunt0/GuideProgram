@@ -39,8 +39,6 @@
             label1 = new Label();
             label2 = new Label();
             testbox = new RichTextBox();
-            testdot = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)testdot).BeginInit();
             SuspendLayout();
             // 
             // screenClock
@@ -103,20 +101,12 @@
             testbox.Name = "testbox";
             testbox.TextChanged += testbox_TextChanged;
             // 
-            // testdot
-            // 
-            resources.ApplyResources(testdot, "testdot");
-            testdot.Name = "testdot";
-            testdot.TabStop = false;
-            testdot.Click += pictureBox1_Click;
-            // 
             // MainPage
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ControlBox = false;
-            Controls.Add(testdot);
             Controls.Add(testbox);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -131,7 +121,6 @@
             Name = "MainPage";
             TopMost = true;
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)testdot).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,6 +136,5 @@
         private Label label1;
         private Label label2;
         private RichTextBox testbox;
-        private PictureBox testdot;
     }
 }
